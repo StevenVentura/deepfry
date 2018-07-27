@@ -1,0 +1,17 @@
+{
+  "name": "deepfry",
+  "version": "1.0.0",
+  "description": "deep fry them meme",
+  "main": "deepfry.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "steven ventura",
+  "license": "ISC",
+  "dependencies": {
+    "chromedriver": "^2.40.0",
+    "clipboardy": "^1.2.3",
+    "electron": "^2.0.5",
+    "selenium-webdriver": "^4.0.0-alpha.1"
+  }
+}
