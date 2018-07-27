@@ -1,0 +1,434 @@
+#Filters{
+    display: none;
+}
+body{
+    background-color: #EEE;
+    color: #333;
+}
+#dl-btn{
+   visibility: hidden;
+}
+.slider{
+    display:inline-block;
+    margin: 1em 1.5%;
+    color:#333;
+    min-width:33%;
+    width:15em; 
+    max-width: 100%;
+}
+.slider input{
+width: 100%;
+}
+.slider.faded{
+    color:#BBB;
+} 
+
+
+
+.togglegroup input {
+     display: none; 
+}
+.togglegroup input+span {
+   color:#555;
+   padding: 0.1em 0.3em;
+   cursor:pointer;
+   border: 1px solid #CCC ;
+     border-radius: 4px;
+}
+
+.togglegroup input:checked+span {
+   border: 1px solid transparent ;
+
+  background-color:#1EAEDB;
+  color:#EEE;
+}
+.togglegroup input+span:hover{
+  color:#333;
+}
+.togglegroup input:checked+span:hover{
+  color:#FFF;
+}
+.togglegroup {
+       margin: 1em 1.5%;
+    display: inline-block;
+        width: 15em;
+ 
+    position: relative;
+}
+
+.togglegroup>label, .togglegroup>span {
+    display: inline-block;
+    position:relative;
+    top:1.2em;
+}
+#canvas {
+    border: 5px transparent solid;
+    max-width: 100%;
+}
+#canvas.proc{
+    border: 5px indianred solid;
+}
+#statustext{
+    color:#333;
+  
+}
+#title{
+    font-weight: bold;
+    color:#0a5bb7;
+    font-size: 36pt;
+}
+#subtitle{
+    color:#CCD;
+}
+.container{
+      text-align: center;
+          font-weight: bold;
+    font-size: 15pt;
+}
+#canvas{
+    margin-top:2em;
+}
+
+.community-links li{
+    font-size:16pt;
+    list-style: none;
+    display: inline;
+    margin: 0.5em 1em;
+}
+a{
+        text-decoration: none;
+}
+a:hover{
+        
+         color: #0a5bb7;
+}
+body{
+    font-family: "Cabin",  "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+input[type=file] {
+
+  -webkit-appearance: textfield;
+  -webkit-box-sizing: border-box;
+ display: none;
+ height: 2em;
+      max-width: 100%;
+    text-align: center;
+}
+
+input[type=file]::-webkit-file-upload-button {
+  border: none;
+  margin: 0;
+  padding: 0;
+  -webkit-appearance: none;
+  width: 4px;
+  visibility: hidden;
+}
+
+/* "x::-webkit-file-upload-button" forces the rules to only apply to browsers that support this pseudo-element */
+/* x::-webkit-file-upload-button, */ input[type=file]+label {
+
+
+
+  margin-left:3px;
+  padding: 0.45em;
+ 
+      display: inline-block;
+
+ 
+    color: #1EAEDB;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: 600;
+    line-height: 1.8em;
+    letter-spacing: .1rem;
+
+    text-decoration: none;
+    white-space: nowrap;
+    background-color: transparent;
+    border-radius: 4px;
+    border: 2px solid #1EAEDB;
+    cursor: pointer;
+    box-sizing: border-box;
+    
+    }
+/* x::-webkit-file-upload-button,*/  input[type=file]+label:hover {
+     border: 2px solid #0a5bb7;
+     color: #0a5bb7;
+}
+
+
+.slider .rangeslider__handle {
+    height: 20px;
+    width: 20px;
+    margin-top: 5px;
+}
+.slider .rangeslider--horizontal{
+    margin-top: 0.5em;
+    height: 10px;
+}
+.slider .rangeslider__fill {
+    background: #1EAEDB;
+    position: absolute;
+}
+
+.noselect {
+    cursor: default;
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+a.noselect{
+    cursor: pointer;
+}
+
+/*  
+Sticky Footer Solution
+by Steve Hatcher
+http://stever.ca http://www.cssstickyfooter.com
+*/
+
+html, body, #wrapper {height: 100%;}
+
+body > #wrapper { height: auto; min-height: 100%; }
+
+/* must be same height as the footer */
+#content { overflow: auto; padding-bottom: 150px; } 
+
+#footer {
+     position: relative;
+    margin-top: -1.7em;
+    height: 1.7em;
+    clear: both;
+    background: #ccc;
+    color: #777;
+    font-weight: 800;
+    line-height: 1.7;
+    padding: 0 0.7em;
+    text-align: right;
+} 
+
+/*Opera Fix*/
+body:before { /* thanks to Maleika (Kohoutec)*/
+    content: "";
+    height:100%;
+    float: left;
+    width: 0;
+    margin-top: -32767px; /* thank you Erik J */
+}
+
+/**
+ * Tooltip Styles
+ */
+
+/* Base styles for the element that has a tooltip */
+[data-tooltip],
+.tooltip {
+  position: relative;
+  cursor: pointer;
+}
+
+/* Base styles for the entire tooltip */
+[data-tooltip]:before,
+[data-tooltip]:after,
+.tooltip:before,
+.tooltip:after {
+  position: absolute;
+  visibility: hidden;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
+  -webkit-transition: 
+      opacity 0.2s ease-in-out,
+        visibility 0.2s ease-in-out,
+        -webkit-transform 0.2s cubic-bezier(0.71, 1.7, 0.77, 1.24);
+    -moz-transition:    
+        opacity 0.2s ease-in-out,
+        visibility 0.2s ease-in-out,
+        -moz-transform 0.2s cubic-bezier(0.71, 1.7, 0.77, 1.24);
+    transition:         
+        opacity 0.2s ease-in-out,
+        visibility 0.2s ease-in-out,
+        transform 0.2s cubic-bezier(0.71, 1.7, 0.77, 1.24);
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform:    translate3d(0, 0, 0);
+  transform:         translate3d(0, 0, 0);
+  pointer-events: none;
+}
+
+/* Show the entire tooltip on hover and focus */
+[data-tooltip]:hover:before,
+[data-tooltip]:hover:after,
+[data-tooltip]:focus:before,
+[data-tooltip]:focus:after,
+.tooltip:hover:before,
+.tooltip:hover:after,
+.tooltip:focus:before,
+.tooltip:focus:after {
+  visibility: visible;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1;
+}
+
+/* Base styles for the tooltip's directional arrow */
+.tooltip:before,
+[data-tooltip]:before {
+  z-index: 1001;
+  border: 6px solid transparent;
+  background: transparent;
+  content: "";
+}
+
+/* Base styles for the tooltip's content area */
+.tooltip:after,
+[data-tooltip]:after {
+  z-index: 1000;
+  padding: 8px;
+  width: 160px;
+  background-color: #000;
+  background-color: hsla(0, 0%, 20%, 0.9);
+  color: #fff;
+  content: attr(data-tooltip);
+  
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+/* Directions */
+
+/* Top (default) */
+[data-tooltip]:before,
+[data-tooltip]:after,
+.tooltip:before,
+.tooltip:after,
+.tooltip-top:before,
+.tooltip-top:after {
+  bottom: 100%;
+  left: 50%;
+}
+
+[data-tooltip]:before,
+.tooltip:before,
+.tooltip-top:before {
+  margin-left: -6px;
+  margin-bottom: -12px;
+  border-top-color: #000;
+  border-top-color: hsla(0, 0%, 20%, 0.9);
+}
+
+/* Horizontally align top/bottom tooltips */
+[data-tooltip]:after,
+.tooltip:after,
+.tooltip-top:after {
+  margin-left: -80px;
+}
+
+[data-tooltip]:hover:before,
+[data-tooltip]:hover:after,
+[data-tooltip]:focus:before,
+[data-tooltip]:focus:after,
+.tooltip:hover:before,
+.tooltip:hover:after,
+.tooltip:focus:before,
+.tooltip:focus:after,
+.tooltip-top:hover:before,
+.tooltip-top:hover:after,
+.tooltip-top:focus:before,
+.tooltip-top:focus:after {
+  -webkit-transform: translateY(-12px);
+  -moz-transform:    translateY(-12px);
+  transform:         translateY(-12px); 
+}
+
+/* Left */
+.tooltip-left:before,
+.tooltip-left:after {
+  right: 100%;
+  bottom: 50%;
+  left: auto;
+}
+
+.tooltip-left:before {
+  margin-left: 0;
+  margin-right: -12px;
+  margin-bottom: 0;
+  border-top-color: transparent;
+  border-left-color: #000;
+  border-left-color: hsla(0, 0%, 20%, 0.9);
+}
+
+.tooltip-left:hover:before,
+.tooltip-left:hover:after,
+.tooltip-left:focus:before,
+.tooltip-left:focus:after {
+  -webkit-transform: translateX(-12px);
+  -moz-transform:    translateX(-12px);
+  transform:         translateX(-12px); 
+}
+
+/* Bottom */
+.tooltip-bottom:before,
+.tooltip-bottom:after {
+  top: 100%;
+  bottom: auto;
+  left: 50%;
+}
+
+.tooltip-bottom:before {
+  margin-top: -12px;
+  margin-bottom: 0;
+  border-top-color: transparent;
+  border-bottom-color: #000;
+  border-bottom-color: hsla(0, 0%, 20%, 0.9);
+}
+
+.tooltip-bottom:hover:before,
+.tooltip-bottom:hover:after,
+.tooltip-bottom:focus:before,
+.tooltip-bottom:focus:after {
+  -webkit-transform: translateY(12px);
+  -moz-transform:    translateY(12px);
+  transform:         translateY(12px); 
+}
+
+/* Right */
+.tooltip-right:before,
+.tooltip-right:after {
+  bottom: 50%;
+  left: 100%;
+}
+
+.tooltip-right:before {
+  margin-bottom: 0;
+  margin-left: -12px;
+  border-top-color: transparent;
+  border-right-color: #000;
+  border-right-color: hsla(0, 0%, 20%, 0.9);
+}
+
+.tooltip-right:hover:before,
+.tooltip-right:hover:after,
+.tooltip-right:focus:before,
+.tooltip-right:focus:after {
+  -webkit-transform: translateX(12px);
+  -moz-transform:    translateX(12px);
+  transform:         translateX(12px); 
+}
+
+/* Move directional arrows down a bit for left/right tooltips */
+.tooltip-left:before,
+.tooltip-right:before {
+  top: 3px;
+}
+
+/* Vertically center tooltip content for left/right tooltips */
+.tooltip-left:after,
+.tooltip-right:after {
+  margin-left: 0;
+  margin-bottom: -16px;
+}
