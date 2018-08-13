@@ -73,25 +73,32 @@ namespace DeepestFryer
                                        //,"headless"
                                        //"mute-audio"
                                        , "disable-notifications"
+                                      // , "download.default_directory=c:\\users\\velentium\\desktop"
             //, "use-file-for-fake-audio-capture='C:\\Users\\Yoloswag\\" +
             //    "source\\repos\\FMocker\\FMocker\\SavedFClips\\" +
             //    "idontlikeplayback.wav'"
             );
-            //chromeOptions.addArguments('start-maximized');
-            //chromeOptions.addArguments('incognito');
-            //chromeOptions.addArguments('headless');
-            //chromeOptions.setUserPreferences({'download.default_directory' : '/path/to/your/download/directory'});
+            //chromeOptions.AddUserProfilePreference(
+            //    "download.default_directory", 
+            //    ".");
+            //chromeOptions.AddUserProfilePreference("intl.accept_languages", "nl");
+            //chromeOptions.AddUserProfilePreference("disable-popup-blocking", "true");
+            //chromeOptions.AddUserProfilePreference("plugins.plugins_disabled", "Chrome PDF Viewer");
+        //chromeOptions.addArguments('start-maximized');
+        //chromeOptions.addArguments('incognito');
+        //chromeOptions.addArguments('headless');
+        //chromeOptions.setUserPreferences({'download.default_directory' : '/path/to/your/download/directory'});
 
 
-            //for (int n = -1; n <  WaveIn.DeviceCount; n++)
-            //{
-            //    var caps = WaveIn.GetCapabilities(n);
-            //    log(caps.ProductName);
-            //}
+        //for (int n = -1; n <  WaveIn.DeviceCount; n++)
+        //{
+        //    var caps = WaveIn.GetCapabilities(n);
+        //    log(caps.ProductName);
+        //}
 
 
 
-            chromeDriver = new ChromeDriver(service, chromeOptions);
+        chromeDriver = new ChromeDriver(service, chromeOptions);
             js = (IJavaScriptExecutor)chromeDriver;
             
 
@@ -162,44 +169,114 @@ namespace DeepestFryer
 
                 //click dl button
                 var dl_btn = chromeDriver.FindElement(By.Id("dl-btn"));
-                //js.ExecuteScript("arguments[0].scrollIntoView()", dl_btn);
+                js.ExecuteScript("arguments[0].scrollIntoView()", dl_btn);
                 Actions action = new Actions(chromeDriver);
                 action.MoveToElement(dl_btn).Perform(); // move to the button
-                chromeDriver.FindElement(By.Id("dl-btn")).Click();
-                saveboi();
-                dl_btn.Click();
-                dl_btn.Click();
-                dl_btn.Click();
+
+                //dl_btn.Click();
+                // dl_btn.Click();
+                bool again = true;
+                while (again)
+                {
+                    try
+                    {
+                        dl_btn.Click();
+                        again = false;
+                    }catch(Exception e)
+                    {
+                        again = true;
+                    }
+                }
+
+
+                var directory = new DirectoryInfo("C:\\Users\\Velentium\\Downloads");
+                var myFile = (from f in directory.GetFiles()
+                              orderby f.LastWriteTime descending
+                              select f).First();
+
+                //reads file into an System.Drawing.Image
+                FileStream fs = new FileStream(myFile.FullName, FileMode.Open, FileAccess.Read);
+                System.Drawing.Image image = System.Drawing.Image.FromStream(fs);
+                fs.Close();
+
+                //add text to image via System.Drawing.Graphics
+                Bitmap myBitmap = new Bitmap(image);
+                //Graphics g = Graphics.FromImage(myBitmap);
+                //g.DrawString(textToAdd, new Font("Tahoma", 14), System.Drawing.Brushes.Black, new PointF(0, 0));
+
+                //save modified image back to disk (transparency works)
+                //myBitmap.Save(fileLocation, System.Drawing.Imaging.ImageFormat.Png);
+
+                //Copy to clipboard (transparent areas are now gray)
+                System.Windows.Forms.Clipboard.SetImage(myBitmap);
 
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-
+                Console.WriteLine(e.Message + "\r\n" + e.StackTrace);
             }
         }
-
-        private void saveboi()
+        private void saveboi3()
         {
-            var base64string = js.ExecuteScript(@"
-    var c = document.createElement('canvas');
-    var ctx = c.getContext('2d');
-    var img = document.getElementById('Img1');
-    c.height=img.height;
-    c.width=img.width;
-    ctx.drawImage(img, 0, 0,img.width, img.height);
-    var base64String = c.toDataURL();
-    return base64String;
-    ") as string;
+            var deepfriedimageobject = chromeDriver.FindElement(By.Id("canvas"));
+            Actions rightClickAction = new Actions(chromeDriver);
+            rightClickAction.MoveToElement(deepfriedimageobject)
+                .ContextClick(deepfriedimageobject)
+                //.Build()
+                .Perform();
 
-            var base64 = base64string.Split(',').Last();
-            using (var stream = new MemoryStream(Convert.FromBase64String(base64)))
-            {
-                using (var bitmap = new Bitmap(stream))
-                {
-                    var filepath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ImageName.png");
-                    bitmap.Save(filepath, ImageFormat.Png);
-                }
-            }
+            //js.ExecuteScript("" +
+            //    "$('canvas').trigger('contextmenu');" +
+            //    "" +
+            //    "");
+
+
+        }
+        private void saveboi2()
+        {
+            var deepfriedimageobject = chromeDriver.FindElement(By.Id("canvas"));
+            Actions rightClickAction = new Actions(chromeDriver);
+            rightClickAction.MoveToElement(deepfriedimageobject)
+                .ContextClick(deepfriedimageobject)
+                .SendKeys(Keys.ArrowDown).
+                SendKeys(Keys.Return).
+                MoveByOffset(30, 60).
+                Click().
+                Build().
+                Perform();
+            IWebElement elementOpen = chromeDriver.FindElement(By.CssSelector("Copy")); /*This will select menu after right click */
+
+            elementOpen.Click();
+
+
+
+            //Console.WriteLine("displayed="+deepfriedimageobject.Displayed);
+
+        }
+        private void saveboi1()
+        {
+
+            //var base64string = js.ExecuteScript(@"
+            //var c = document.getElementById('canvas');
+            
+
+            //        var base64String = c.toDataURL();
+            //return base64String;
+            //") as string;
+            
+            //Console.WriteLine("base64string="+base64string);
+
+            //var base64 = base64string.Split(',').Last();
+            //using (var stream = new MemoryStream(Convert.FromBase64String(base64)))
+            //{
+            //    using (var bitmap = new Bitmap(stream))
+            //    {
+            //        var filepath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ImageName.png");
+            //        bitmap.Save(filepath, ImageFormat.Png);
+            //    }
+            //}
+
+            
         }
 
 
